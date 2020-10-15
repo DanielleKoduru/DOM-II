@@ -76,19 +76,33 @@ bodyOne.addEventListener("contextmenu", (e) => {
 });
 
 //10. Keyup
-const intro = document.querySelector(".intro")
-window.addEventListener('keyup', event =>{
-    if (event.code === 5){
-        return ; 
-    }
-    intro.style.color = "green";
+const intro = document.querySelector(".intro");
+window.addEventListener("keyup", (event) => {
+  if (event.code === 5) {
+    return;
+  }
+  intro.style.color = "green";
+});
+
+// Nest two similar events somewhere in the site and prevent the event propagation properly. Remember not all event types bubble.
+
+//Are these two woking properly??
+const navClick = document.getElementsByClassName("destination");
+navClick[2].addEventListener('click', (e) => {
+  navClick[2].style.border = '10px dotted yellow';
+  e.stopPropagation();
+})
+
+const top = document.getElementsByClassName('content-pick');
+top[0].addEventListener('click', (e) => {
+  top[0].style.border = '10px dashed black';
 });
 
 
-// Nest two similar events somewhere in the site and prevent the event propagation properly. Remember not all event types bubble.
-window.addEventListener("scroll", (e) => {
-    intro.style.font = "yellow";
-  });
-
-
 // Stop the navigation items from refreshing the page by using `preventDefault()`
+
+const nav = document.getElementsByClassName('.nav');
+nav.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+});
